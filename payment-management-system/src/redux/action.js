@@ -1,51 +1,56 @@
 import {
-  ADD_ITEM,
-  DELETE_ITEM,
-  UPDATE_ITEM,
-  ADD_COUNTER,
-  REDUCE_COUNTER,
-  DELETE_FROM_CART,
-  ADD_TO_CART,
-  EDIT_ITEM,
-  ADD_TO_ORDERS,
+  SIGN_IN,
+  LOGOUT,
+  SIGN_UP,
+  ADD_GROUP,
+  ADD_EXPENSE,
+  UPDATE_GROUP,
+  DELETE_GROUP,
+  UPDATE_CUSTOM_CATEGORY,
+  UPDATE_MEMBERS,
 } from "./actionTypes";
 
-export const addToCart = (payload) => ({
-  type: ADD_TO_CART,
+export const signin = (payload) => ({
+  type: SIGN_IN,
   payload,
 });
 
-export const addToOrders = (payload) => ({
-  type: ADD_TO_ORDERS,
+export const logout = (payload) => ({
+  type: LOGOUT,
   payload,
 });
 
-export const deleteFromCart = (payload) => ({
-  type: DELETE_FROM_CART,
+export const signup = (payload) => ({
+  type: SIGN_UP,
   payload,
 });
 
-export const addItem = (payload) => ({
-  type: ADD_ITEM,
+export const addGroup = (payload) => ({
+  type: ADD_GROUP,
   payload,
 });
 
-export const deleteItem = (payload) => ({
-  type: DELETE_ITEM,
+export const deleteGroup = (payload) => ({
+  type: DELETE_GROUP,
   payload,
 });
 
-export const updateItem = (payload) => ({
-  type: UPDATE_ITEM,
+export const updateGroup = (payload) => ({
+  type: UPDATE_GROUP,
   payload,
 });
 
-export const addCounter = (payload) => ({
-  type: ADD_COUNTER,
+export const addExpanse = (payload) => ({
+  type: ADD_EXPENSE,
   payload,
 });
 
-export const reduceCounter = (payload) => ({
-  type: REDUCE_COUNTER,
+export const updateCustomCategory = (payload) => ({
+  type: UPDATE_CUSTOM_CATEGORY,
+  payload,
+});
+
+export const updateMembers = (payload) => ({
+  type: UPDATE_MEMBERS,
   payload,
 });

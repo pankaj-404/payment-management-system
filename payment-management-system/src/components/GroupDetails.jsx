@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
+import { addGroup } from "../redux/action";
+import { connect } from "react-redux";
 
-export default class GroupDetails extends React.Component {
+class GroupDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,8 +27,16 @@ export default class GroupDetails extends React.Component {
     });
   };
 
+  validation = (payload) => {
+    const { usersData, addGroup } = this.props;
+    const { email, users, groupName } = this.state;
+    // usersData.hasOwnProperty(email) &&
+    users && groupName && addGroup(payload);
+    return <Router to="/transactions" />;
+  };
+
   render() {
-    const { handleInput, handleAdd } = this;
+    const { handleInput, handleAdd, validation } = this;
     const { users, email, groupName } = this.state;
     return (
       <div>
@@ -47,9 +57,9 @@ export default class GroupDetails extends React.Component {
           placeholder="email"
         />
         <button onClick={(e) => handleAdd(e)}>Add</button>
-        <Link to="/transactions">
-          <button onClick={() => console.log(this.state)}>Done</button>
-        </Link>
+        {/* <Link to="/transactions"> */}
+        <button onClick={() => validation(this.state)}>Done</button>
+        {/* </Link> */}
         {users.length > 0 && (
           <>
             <div>GROUP NAME :{" " + groupName}</div>
@@ -69,3 +79,13 @@ export default class GroupDetails extends React.Component {
     );
   }
 }
+
+const mapStasteToProps = (state) => ({
+  usersData: state.users,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addGroup: (payload) => dispatch(addGroup(payload)),
+});
+
+export default connect(mapStasteToProps, mapDispatchToProps)(GroupDetails);

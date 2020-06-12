@@ -3,12 +3,19 @@ import reducer from "./reducer";
 // import data from "../../src/data.json";
 
 const initState = {
-  products: [],
-  quantity: Number(1),
-  cartArr: [],
-  orders: [],
-  name: "",
-  add: "",
-  phoneNo: "",
+  users: {},
+  email: {},
+  groups: {},
+  expennses: [],
+  categories: [
+    "Food",
+    "Apparel",
+    "Health",
+    "Education",
+    "Transportation",
+    "Household",
+    "Investment",
+    "Others",
+  ],
 };
 export const store = createStore(reducer, initState);

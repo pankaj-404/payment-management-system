@@ -1,94 +1,79 @@
 import {
-  ADD_ITEM,
-  DELETE_ITEM,
-  UPDATE_ITEM,
-  ADD_TO_CART,
-  ADD_COUNTER,
-  REDUCE_COUNTER,
-  DELETE_FROM_CART,
-  EDIT_ITEM,
-  ADD_TO_ORDERS,
+  SIGN_IN,
+  LOGOUT,
+  SIGN_UP,
+  ADD_GROUP,
+  ADD_EXPENSE,
+  UPDATE_GROUP,
+  DELETE_GROUP,
+  UPDATE_CUSTOM_CATEGORY,
+  UPDATE_MEMBERS,
 } from "./actionTypes";
 
 const reducer = (state, { type, payload }) => {
+  console.log(state);
+  const { email } = { ...payload };
   switch (type) {
-    case ADD_ITEM:
-      console.log(payload);
-      let item = {
-        ...payload,
-        id: state.products[state.products.length - 1].id + 1,
-        description: [{ line: payload.description }],
-        item: payload.item,
-        price: Number(payload.price),
-      };
+    case SIGN_IN:
       return {
         ...state,
-        products: [...state.products, item],
       };
-
-    case DELETE_ITEM:
-      let newTodo = state.products.filter((ele) => ele.id !== payload);
+    case LOGOUT:
+      // let newTodo = state.products.filter((ele) => ele.id !== payload);
       return {
         ...state,
-        products: newTodo,
       };
-
-    case DELETE_FROM_CART:
-      let newCartArr = state.cartArr.filter((ele) => ele.id != payload);
-      console.log(newCartArr);
+    case SIGN_UP:
+      // let newCartArr = state.cartArr.filter((ele) => ele.id != payload);
+      // console.log(newCartArr);
       return {
         ...state,
-        cartArr: newCartArr,
       };
-
-    case ADD_TO_CART:
-      let product = state.products.find((ele) => ele.id === payload);
-      product = { ...product, quantity: 1 };
+    case ADD_GROUP:
+      // let product = state.products.find((ele) => ele.id === payload);
+      // product = { ...product, quantity: 1 };
       return {
         ...state,
-        cartArr: [...state.cartArr, product],
+        users: { payload },
       };
-
-    case ADD_TO_ORDERS:
+    case ADD_EXPENSE:
       // console.log(payload, "order");
       return {
         ...state,
-        orders: [...state.orders, payload],
-        cartArr: [],
       };
-
-    case ADD_COUNTER:
+    case UPDATE_GROUP:
       // console.log(state.quantity);
       return {
         ...state,
-        quantity: state.quantity + payload,
       };
-    case REDUCE_COUNTER:
+    case DELETE_GROUP:
       // console.log(state.quantity);
       return {
         ...state,
-        quantity: state.quantity - payload,
       };
-
-    case UPDATE_ITEM:
-      let updateTodo = state.products.map((ele) =>
-        ele.id !== payload.id
-          ? ele
-          : {
-              ...ele,
-              item: payload.item,
-              img:
-                "https://cdn.shopify.com/s/files/1/0173/8828/products/SAMSUNG_TAB_A_-_10.1_-_Kick_Stand_-_190827.311_400x400.png?v=1580178714",
-              price: Number(payload.price),
-              description: payload.description,
-              category: payload.category,
-            }
-      );
+    case UPDATE_CUSTOM_CATEGORY:
+      // let updateTodo = state.products.map((ele) =>
+      //   ele.id !== payload.id
+      //     ? ele
+      //     : {
+      //         ...ele,
+      //         item: payload.item,
+      //         img:
+      //           "https://cdn.shopify.com/s/files/1/0173/8828/products/SAMSUNG_TAB_A_-_10.1_-_Kick_Stand_-_190827.311_400x400.png?v=1580178714",
+      //         price: Number(payload.price),
+      //         description: payload.description,
+      //         category: payload.category,
+      //       }
+      // );
       return {
         ...state,
-        products: updateTodo,
       };
 
+    case UPDATE_MEMBERS:
+      // console.log(state.quantity);
+      return {
+        ...state,
+      };
     default:
       return state;
   }
