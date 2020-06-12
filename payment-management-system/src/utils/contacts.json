@@ -1,0 +1,20 @@
+{
+  "contacts": [
+    {
+      "id": 2,
+      "first_name": "Ada",
+      "last_name": "Lovelace",
+      "groups": [
+        {
+          "group_id": 3018312,
+          "balance": 414.5
+        },
+        {
+          "group_id": 2830896,
+          "balance": 0
+        }
+      ],
+      "updated_at": "2017-11-30T09:41:09Z"
+    }
+  ]
+}

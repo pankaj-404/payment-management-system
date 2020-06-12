@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "id": 3018312,
+      "name": "a test group",
+      "updated_at": "2017-08-30T20:31:51Z",
+      "members": [],
+      "original_debts": [
+        {
+          "from": 12345,
+          "to": 54321,
+          "amount": "414.5"
+        }
+      ]
+    }
+  ]
+}
