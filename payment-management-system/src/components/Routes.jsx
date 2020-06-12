@@ -7,6 +7,7 @@ import Settings from "./Settings";
 import Stats from "./Stats";
 import Navbar from "./Navbar";
 import Body from "./Body";
+import GroupDetails from "./GroupDetails";
 
 export default function Routes() {
   return (
@@ -16,6 +17,7 @@ export default function Routes() {
         <Route exact path="/" render={() => <Signin />} />
         <Route path="/home" render={() => <Body />} />
         <Route path="/signup" render={() => <Signup />} />
+        <Route exact path="/addGroup" render={() => <GroupDetails />} />
         <Route path="/transactions" render={() => <Transactions />} />
         <Route path="/settings" render={() => <Settings />} />
         <Route path="/stats" render={() => <Stats />} />
