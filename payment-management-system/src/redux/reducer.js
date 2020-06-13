@@ -14,7 +14,7 @@ const reducer = (state, { type, payload }) => {
   console.log(state, "state");
   console.log(payload, "payload");
   let { users, currentUser, isSignin } = state;
-  let { groups, expenses } = state.users;
+  let { expenses } = state.users;
   switch (type) {
     case SIGN_IN:
       console.log(payload);
@@ -46,6 +46,7 @@ const reducer = (state, { type, payload }) => {
       let groupId = new Date();
       const members = payload.users;
       // const { groups } = state.users;
+      // console.log(users[payload.member]["groups"]);
       return {
         ...state,
         users: {
@@ -53,7 +54,7 @@ const reducer = (state, { type, payload }) => {
           [payload.member]: {
             ...users[payload.member],
             groups: {
-              ...groups,
+              ...users[payload.member]["groups"],
               [groupId]: {
                 groupName: payload.groupName,
                 members: payload.users,

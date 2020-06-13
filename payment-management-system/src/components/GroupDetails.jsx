@@ -28,57 +28,59 @@ class GroupDetails extends React.Component {
   };
 
   validation = (payload) => {
-    const { usersData, addGroup } = this.props;
+    const { usersData, addGroup, history } = this.props;
     const { email, users, groupName } = this.state;
 
     // usersData.hasOwnProperty(email) &&
     users &&
       groupName &&
       users.map((member) => addGroup({ ...payload, member: member }));
-    return <Router to="/transactions" />;
+    history.push("/transactions");
   };
 
   render() {
     const { handleInput, handleAdd, validation } = this;
     const { users, email, groupName } = this.state;
     return (
-      <div>
-        <input
-          type="text"
-          name="groupName"
-          value={groupName}
-          onChange={(e) => handleInput(e)}
-          placeholder="Group Name"
-        />
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={(e) => {
-            handleInput(e);
-          }}
-          placeholder="email"
-        />
-        <button onClick={(e) => handleAdd(e)}>Add</button>
-        {/* <Link to="/transactions"> */}
-        <button onClick={() => validation(this.state)}>Done</button>
-        {/* </Link> */}
-        {users.length > 1 && (
-          <>
-            <div>GROUP NAME :{" " + groupName}</div>
-            <div style={{ margin: "20px 0 0 0", textAlign: "center" }}>
-              USERS:
-              <br />
-              {users.map((user, i) => (
-                <div style={{ margin: "5px 0 0 0", textAlign: "center" }}>
-                  {i + 1 + " "}
-                  {user}
-                </div>
-              ))}
-            </div>
-          </>
-        )}
-      </div>
+      <>
+        <div>
+          <input
+            type="text"
+            name="groupName"
+            value={groupName}
+            onChange={(e) => handleInput(e)}
+            placeholder="Group Name"
+          />
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => {
+              handleInput(e);
+            }}
+            placeholder="email"
+          />
+          <button onClick={(e) => handleAdd(e)}>Add</button>
+          {/* <Link to="/transactions"> */}
+          <button onClick={() => validation(this.state)}>Done</button>
+          {/* </Link> */}
+          {users.length > 1 && (
+            <>
+              <div>GROUP NAME :{" " + groupName}</div>
+              <div style={{ margin: "20px 0 0 0", textAlign: "center" }}>
+                USERS:
+                <br />
+                {users.map((user, i) => (
+                  <div style={{ margin: "5px 0 0 0", textAlign: "center" }}>
+                    {i + 1 + " "}
+                    {user}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </>
     );
   }
 }
