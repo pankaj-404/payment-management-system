@@ -14,12 +14,19 @@ export default function Routes() {
     <>
       <Switch>
         {/* <Route render={() => <Navbar />} /> */}
-        <Route exact path="/" render={() => <Signin />} />
-        <Route path="/home" render={() => <Body />} />
-        <Route path="/signup" render={() => <Signup />} />
-        <Route exact path="/addGroup" render={() => <GroupDetails />} />
-        <Route path="/transactions" render={() => <Transactions />} />
-        <Route path="/settings" render={() => <Settings />} />
+        <Route exact path="/" render={(props) => <Signin {...props} />} />
+        <Route path="/home" render={(props) => <Body {...props} />} />
+        <Route path="/signup" render={(props) => <Signup {...props} />} />
+        <Route
+          exact
+          path="/addGroup"
+          render={(props) => <GroupDetails {...props} />}
+        />
+        <Route
+          path="/transactions"
+          render={(props) => <Transactions {...props} />}
+        />
+        <Route path="/settings" render={(props) => <Settings {...props} />} />
         <Route path="/stats" render={() => <Stats />} />
       </Switch>
     </>

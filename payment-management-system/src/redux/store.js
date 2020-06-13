@@ -17,5 +17,6 @@ const initState = {
     "Investment",
     "Others",
   ],
+  isSignin: false,
 };
 export const store = createStore(reducer, initState);
