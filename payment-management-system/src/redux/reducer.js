@@ -11,12 +11,17 @@ import {
 } from "./actionTypes";
 
 const reducer = (state, { type, payload }) => {
-  console.log(state);
+  console.log(state, "state");
+  console.log(payload, "payload");
+  let { users, currentUser, isSignin } = state;
+  let { groups, expenses } = state.users;
   switch (type) {
     case SIGN_IN:
+      console.log(payload);
       return {
         ...state,
         isSignin: payload.isSignin,
+        currentUser: payload.email,
       };
     case LOGOUT:
       return {
@@ -32,15 +37,31 @@ const reducer = (state, { type, payload }) => {
       };
       let email = payload.email;
       console.log(state, "signup");
-      const { users } = state;
+      // let { users } = state;
       return {
         ...state,
         users: { ...users, [payload.email]: setuserData },
       };
     case ADD_GROUP:
+      let groupId = new Date();
+      const members = payload.users;
+      // const { groups } = state.users;
       return {
         ...state,
-        users: { payload },
+        users: {
+          ...users,
+          [payload.member]: {
+            ...users[payload.member],
+            groups: {
+              ...groups,
+              [groupId]: {
+                groupName: payload.groupName,
+                members: payload.users,
+                customCategories: [],
+              },
+            },
+          },
+        },
       };
     case ADD_EXPENSE:
       return {

@@ -22,12 +22,21 @@ class Signup extends React.Component {
   handleClick = (payload) => {
     const { email, password } = this.state;
     const { signin, usersData, history } = this.props;
-    Object.keys(usersData).length > 0 &&
+    payload = payload;
+    if (
+      Object.keys(usersData).length > 0 &&
       email &&
       password &&
       usersData.hasOwnProperty(email) &&
-      usersData[email].password &&
+      usersData[email].password
+    ) {
+      payload = { ...payload, isSignin: true };
+      this.setState({
+        isSignin: true,
+      });
+      signin(payload);
       history.push("/transactions");
+    }
   };
 
   render() {

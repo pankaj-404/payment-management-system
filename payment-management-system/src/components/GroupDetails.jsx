@@ -7,7 +7,7 @@ class GroupDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
+      users: [this.props.currentUser],
       email: "",
       groupName: "",
     };
@@ -30,8 +30,11 @@ class GroupDetails extends React.Component {
   validation = (payload) => {
     const { usersData, addGroup } = this.props;
     const { email, users, groupName } = this.state;
+
     // usersData.hasOwnProperty(email) &&
-    users && groupName && addGroup(payload);
+    users &&
+      groupName &&
+      users.map((member) => addGroup({ ...payload, member: member }));
     return <Router to="/transactions" />;
   };
 
@@ -60,7 +63,7 @@ class GroupDetails extends React.Component {
         {/* <Link to="/transactions"> */}
         <button onClick={() => validation(this.state)}>Done</button>
         {/* </Link> */}
-        {users.length > 0 && (
+        {users.length > 1 && (
           <>
             <div>GROUP NAME :{" " + groupName}</div>
             <div style={{ margin: "20px 0 0 0", textAlign: "center" }}>
@@ -82,6 +85,7 @@ class GroupDetails extends React.Component {
 
 const mapStasteToProps = (state) => ({
   usersData: state.users,
+  currentUser: state.currentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({

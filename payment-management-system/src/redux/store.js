@@ -4,9 +4,10 @@ import reducer from "./reducer";
 
 const initState = {
   users: {},
-  email: {},
-  groups: {},
-  expennses: [],
+  // email: {},
+  // groups: {},
+  // expennses: [],
+  currentUser: "",
   categories: [
     "Food",
     "Apparel",
