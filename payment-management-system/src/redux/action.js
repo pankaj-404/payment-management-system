@@ -8,6 +8,7 @@ import {
   DELETE_GROUP,
   UPDATE_CUSTOM_CATEGORY,
   UPDATE_MEMBERS,
+  SELECT_GROUP,
 } from "./actionTypes";
 
 export const signin = (payload) => ({
@@ -40,7 +41,7 @@ export const updateGroup = (payload) => ({
   payload,
 });
 
-export const addExpanse = (payload) => ({
+export const addExpense = (payload) => ({
   type: ADD_EXPENSE,
   payload,
 });
@@ -52,5 +53,10 @@ export const updateCustomCategory = (payload) => ({
 
 export const updateMembers = (payload) => ({
   type: UPDATE_MEMBERS,
+  payload,
+});
+
+export const selectGroup = (payload) => ({
+  type: SELECT_GROUP,
   payload,
 });

@@ -57,6 +57,7 @@ class Signup extends React.Component {
         <label>
           Email
           <input
+            style={{ margin: 10 }}
             onChange={(e) => this.handleChnage(e)}
             value={email}
             type="email"
@@ -67,6 +68,7 @@ class Signup extends React.Component {
         <label>
           Password
           <input
+            style={{ margin: 10 }}
             onChange={(e) => this.handleChnage(e)}
             value={password}
             type="password"
@@ -74,9 +76,14 @@ class Signup extends React.Component {
             placeholder="Password"
           />
         </label>
-        <button onClick={() => this.handleClick(this.state)}>Signin</button>
+        <button
+          style={{ margin: 10 }}
+          onClick={() => this.handleClick(this.state)}
+        >
+          Signin
+        </button>
         <Link to="/signup">
-          <button>Signup</button>
+          <button style={{ width: "100%", margin: 10 }}>Signup</button>
         </Link>
       </div>
     );

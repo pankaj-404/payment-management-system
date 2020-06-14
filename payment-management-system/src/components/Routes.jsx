@@ -8,6 +8,7 @@ import Stats from "./Stats";
 import Navbar from "./Navbar";
 import Body from "./Body";
 import GroupDetails from "./GroupDetails";
+import AddExpense from "./AddExpense";
 
 export default function Routes() {
   return (
@@ -25,6 +26,10 @@ export default function Routes() {
         <Route
           path="/transactions"
           render={(props) => <Transactions {...props} />}
+        />
+        <Route
+          path="/addexpense/:id"
+          render={(props) => <AddExpense {...props} />}
         />
         <Route path="/settings" render={(props) => <Settings {...props} />} />
         <Route path="/stats" render={() => <Stats />} />
