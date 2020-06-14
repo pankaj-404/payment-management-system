@@ -32,10 +32,10 @@ class GroupDetails extends React.Component {
     const { email, users, groupName } = this.state;
 
     // usersData.hasOwnProperty(email) &&
-    users &&
+    users.length > 1 &&
       groupName &&
       users.map((member) => addGroup({ ...payload, member: member }));
-    history.push("/transactions");
+    history.push("/home");
   };
 
   render() {

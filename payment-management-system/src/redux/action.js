@@ -9,6 +9,10 @@ import {
   UPDATE_CUSTOM_CATEGORY,
   UPDATE_MEMBERS,
   SELECT_GROUP,
+  UPDATE_EXPENSE,
+  UPDATE_BORROWED,
+  UPDATE_LENT,
+  SETTLE_PENDING,
 } from "./actionTypes";
 
 export const signin = (payload) => ({
@@ -55,8 +59,26 @@ export const updateMembers = (payload) => ({
   type: UPDATE_MEMBERS,
   payload,
 });
+export const updateExpense = (payload) => ({
+  type: UPDATE_EXPENSE,
+  payload,
+});
+// updateBorrowed,updateLent,updateExpense
+export const updateBorrowed = (payload) => ({
+  type: UPDATE_BORROWED,
+  payload,
+});
+export const updateLent = (payload) => ({
+  type: UPDATE_LENT,
+  payload,
+});
 
 export const selectGroup = (payload) => ({
   type: SELECT_GROUP,
+  payload,
+});
+
+export const settlePending = (payload) => ({
+  type: SETTLE_PENDING,
   payload,
 });

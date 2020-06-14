@@ -9,31 +9,59 @@ import Navbar from "./Navbar";
 import Body from "./Body";
 import GroupDetails from "./GroupDetails";
 import AddExpense from "./AddExpense";
+import Groups from "./Groups";
+import { connect } from "react-redux";
+import LangingPage from "../components/LandingPage";
+function Routes(props) {
+  const { isSignin, currentUser } = props;
 
-export default function Routes() {
   return (
     <>
       <Switch>
-        {/* <Route render={() => <Navbar />} /> */}
-        <Route exact path="/" render={(props) => <Signin {...props} />} />
-        <Route path="/home" render={(props) => <Body {...props} />} />
+        <Route exact path="/" render={() => <LangingPage />} />
+        <Route path="/signin" render={(props) => <Signin {...props} />} />
+        {/* <Route path="/home" render={(props) => <Body {...props} />} /> */}
         <Route path="/signup" render={(props) => <Signup {...props} />} />
-        <Route
-          exact
-          path="/addGroup"
-          render={(props) => <GroupDetails {...props} />}
-        />
-        <Route
-          path="/transactions"
-          render={(props) => <Transactions {...props} />}
-        />
-        <Route
-          path="/addexpense/:id"
-          render={(props) => <AddExpense {...props} />}
-        />
-        <Route path="/settings" render={(props) => <Settings {...props} />} />
-        <Route path="/stats" render={() => <Stats />} />
+        {currentUser !== "" ? (
+          <>
+            <Route render={(props) => <Navbar {...props} />} />
+            <Route path="/home" render={() => <Groups />} />
+            <Route
+              exact
+              path="/addGroup"
+              render={(props) => <GroupDetails {...props} />}
+            />
+            <Route
+              path="/transactions"
+              render={(props) => <Transactions {...props} />}
+            />
+            <Route
+              path="/addexpense/:id"
+              render={(props) => <AddExpense {...props} />}
+            />
+            <Route
+              path="/settings"
+              render={(props) => <Settings {...props} />}
+            />
+            <Route path="/stats" render={() => <Stats />} />
+          </>
+        ) : (
+          ""
+        )}
       </Switch>
     </>
   );
 }
+
+const mapStasteToProps = (state) => ({
+  isSignin: state.isSignin,
+  currentUser: state.currentUser,
+});
+
+// const mapDispatchToProps = (dispatch) => ({
+//   logout: (payload) => dispatch(logout(payload)),
+//   signin: (payload) => dispatch(signin(payload)),
+//   signup: (payload) => dispatch(signup(payload)),
+// });
+
+export default connect(mapStasteToProps, null)(Routes);

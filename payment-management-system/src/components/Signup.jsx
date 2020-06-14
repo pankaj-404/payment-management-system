@@ -11,6 +11,9 @@ class Signup extends React.Component {
       email: "",
       password: "",
       isSignup: false,
+      youBorrowed: 0,
+      youLent: 0,
+      totalExpense: 0,
     };
   }
 

@@ -35,7 +35,7 @@ class Signup extends React.Component {
         isSignin: true,
       });
       signin(payload);
-      history.push("/transactions");
+      history.push("/home");
     }
   };
 
