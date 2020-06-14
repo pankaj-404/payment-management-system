@@ -16,8 +16,8 @@ import {
 } from "./actionTypes";
 
 const reducer = (state, { type, payload }) => {
-  console.log(state, "state");
-  console.log(payload, "payload");
+  // console.log(state, "state");
+  // console.log(payload, "payload");
   let {
     users,
     currentUser,
@@ -119,16 +119,6 @@ const reducer = (state, { type, payload }) => {
 
       return {
         ...state,
-        // users: {
-        //   ...users,
-        //   [payload.member]: {
-        //     ...users[payload["member"]],
-        //     groups: {
-        //       ...users[payload["member"]]["groups"],
-        //       delete payload["groupId"]
-        //     },
-        //   },
-        // },
       };
     case UPDATE_CUSTOM_CATEGORY:
       return {

@@ -3,46 +3,13 @@ import { Link, Router } from "react-router-dom";
 import { addGroup, selectGroup, deleteGroup } from "../redux/action";
 import { connect } from "react-redux";
 
-class Transactions extends React.Component {
+class Groups extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      category: "",
-      amount: 0,
-      customCategory: "",
-    };
-  }
-  handleInput = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  handleDelete(e, payload) {
-    const {
-      currentGroupMembers,
-      selectGroup,
-      deleteGroup,
-      currentUser,
-      usersData,
-    } = this.props;
-    const group = usersData[currentUser]["groups"][e.target.id]["members"];
-    selectGroup(e.target.id);
-    group.map((ele) =>
-      deleteGroup({ ...payload, member: ele, groupId: e.target.id })
-    );
   }
 
   render() {
-    const { handleInput } = this;
-    const { category, amount, customCategory } = this.state;
-    const {
-      categories,
-      usersData,
-      currentUser,
-      selectGroup,
-      deleteGroup,
-    } = this.props;
+    const { categories, usersData, currentUser, selectGroup } = this.props;
     return (
       <>
         <div>
@@ -68,7 +35,6 @@ class Transactions extends React.Component {
               <div
                 style={{
                   margin: "0 0 0 35%",
-                  // textAlign: "center",
                 }}
               >
                 {Object.keys(usersData[currentUser]["groups"]).map((group) =>
@@ -86,12 +52,6 @@ class Transactions extends React.Component {
                             +
                           </button>
                         </Link>
-                        <button
-                          id={group}
-                          onClick={(e) => this.handleDelete(e)}
-                        >
-                          del group
-                        </button>
                       </td>
                     </tr>
                   ) : (
@@ -119,4 +79,4 @@ const mapDispatchToProps = (dispatch) => ({
   deleteGroup: (payload) => dispatch(deleteGroup(payload)),
 });
 
-export default connect(mapStasteToProps, mapDispatchToProps)(Transactions);
+export default connect(mapStasteToProps, mapDispatchToProps)(Groups);
