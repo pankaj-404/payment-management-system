@@ -10,7 +10,7 @@ function Navbar(props) {
     <div
       style={{
         background: "gray",
-        padding: "10px 30px",
+        padding: "10px 10px",
         color: "white",
         textDecoration: "none",
       }}
@@ -18,10 +18,10 @@ function Navbar(props) {
       {/* <Link to="/">Home</Link> */}
       <Link
         style={{
-          padding: "10px 30px",
+          padding: "10px 10px 10px   0",
           color: "white",
           textDecoration: "none",
-          fontSize: 25,
+          fontSize: 20,
         }}
         to="/home"
       >
@@ -29,10 +29,10 @@ function Navbar(props) {
       </Link>
       <Link
         style={{
-          padding: "10px 30px",
+          padding: "10px 10px",
           color: "white",
           textDecoration: "none",
-          fontSize: 25,
+          fontSize: 20,
         }}
         to="/transactions"
       >
@@ -40,10 +40,10 @@ function Navbar(props) {
       </Link>
       <Link
         style={{
-          padding: "10px 30px",
+          padding: "10px 10px",
           color: "white",
           textDecoration: "none",
-          fontSize: 25,
+          fontSize: 20,
         }}
         to="/stats"
       >
@@ -51,22 +51,16 @@ function Navbar(props) {
       </Link>
       <Link
         style={{
-          padding: "10px 30px",
+          padding: "10px 10px",
           color: "white",
           textDecoration: "none",
-          fontSize: 25,
+          fontSize: 20,
         }}
         to="/settings"
       >
         Settings
       </Link>
       <Link to="/" style={{ float: "right" }}>
-        {/* {currentUser == "" && (
-          <span>
-            <button>signin</button>
-            <button>signup</button>
-          </span>
-        )} */}
         {currentUser !== "" && <button onClick={() => logout()}>LOGOUT</button>}
       </Link>
     </div>

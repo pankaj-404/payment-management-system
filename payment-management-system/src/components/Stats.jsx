@@ -1,6 +1,7 @@
 import React from "react";
 import Chart from "react-google-charts";
 import { connect } from "react-redux";
+import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
 
 class Stats extends React.Component {
   constructor(props) {
@@ -149,51 +150,88 @@ class Stats extends React.Component {
       month,
     } = this.state;
     return (
-      <>
+      <div
+        style={{
+          // display: "flex",
+          // flexWrap: "wrap",
+          // justifyContent: "center",
+          minHeight: 620,
+          color: "white",
+        }}
+      >
         <div
           style={{
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
+            // minHeight: 620,
+            // color: "white",
           }}
         >
-          <select onChange={(e) => this.handleChange(e)}>
-            <option>Select Month</option>
-            <option value="jan">jan</option>
-            <option value="feb">feb</option>
-            <option value="mar">mar</option>
-            <option value="april">april</option>
-            <option value="may">may</option>
-            <option value="june">june</option>
-            <option value="july">july</option>
-            <option value="aug">aug</option>
-            <option value="sep">sep</option>
-            <option value="oct">oct</option>
-            <option value="nov">nov</option>
-            <option value="dec">dec</option>
-          </select>
+          {/* variant="standard"
+            onChange={(e) => this.handleChange(e)}
+            value={category}
+            type="text"
+            name="category"
+            placeholder="categories" */}
+          <FormControl>
+            <InputLabel>Select Month</InputLabel>
+            <Select
+              onChange={(e) => this.handleChange(e)}
+              variant="outlined"
+              value={month}
+              placeholder="Mpnths"
+              type="text"
+              name="month"
+              style={{ width: 100, background: "white" }}
+            >
+              <MenuItem selected={"jan"} value="jan">
+                jan
+              </MenuItem>
+              <MenuItem value="feb">feb</MenuItem>
+              <MenuItem value="mar">mar</MenuItem>
+              <MenuItem value="april">april</MenuItem>
+              <MenuItem value="may">may</MenuItem>
+              <MenuItem value="june">june</MenuItem>
+              <MenuItem value="july">july</MenuItem>
+              <MenuItem value="aug">aug</MenuItem>
+              <MenuItem value="sep">sep</MenuItem>
+              <MenuItem value="oct">oct</MenuItem>
+              <MenuItem value="nov">nov</MenuItem>
+              <MenuItem value="dec">dec</MenuItem>
+            </Select>
+          </FormControl>
         </div>
-        <div style={{ display: "flex" }}>
-          <Chart
-            width={"500px"}
-            height={"300px"}
-            chartType="PieChart"
-            loader={<div>Loading Chart</div>}
-            data={[
-              ["Caregorie", "Expenses per month"],
-              ["Food", Food],
-              ["Apparel", Apparel],
-              ["Education", Education],
-              ["Health", Health],
-              ["Transportation", Transportation],
-              ["Household", Household],
-              ["Investment", Investment],
-              ["Others", Others],
-            ]}
-            options={{
-              title: `${month} Month Expenses`,
-            }}
-          />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {month && (
+            <Chart
+              // style={{ margin: 10 }}
+              width={"500px"}
+              height={"300px"}
+              chartType="PieChart"
+              loader={<div>Loading Chart</div>}
+              data={[
+                ["Caregorie", "Expenses per month"],
+                ["Food", Food],
+                ["Apparel", Apparel],
+                ["Education", Education],
+                ["Health", Health],
+                ["Transportation", Transportation],
+                ["Household", Household],
+                ["Investment", Investment],
+                ["Others", Others],
+              ]}
+              options={{
+                title: `${month} Month Expenses`,
+              }}
+            />
+          )}
           {month && (
             <Chart
               width={"500px"}
@@ -217,7 +255,7 @@ class Stats extends React.Component {
             />
           )}
         </div>
-      </>
+      </div>
     );
   }
 }

@@ -12,20 +12,71 @@ class Groups extends React.Component {
     const { categories, usersData, currentUser, selectGroup } = this.props;
     return (
       <>
-        <div>
+        <div
+          style={{
+            fontFamily: "Arial Black, Gadget, sans-serif",
+            display: "flex",
+            alignItems: "center",
+            // justifyContent: "center",
+            flexDirection: "column",
+            minHeight: 620,
+          }}
+        >
           {currentUser && (
-            <div>
-              Total Expense : RS. {usersData[currentUser]["totalExpense"]}
-              <br />
-              You Borrowed : RS. {usersData[currentUser]["youBorrowed"]}
-              <br />
-              You Lent : Rs. {usersData[currentUser]["youLent"]}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-around",
+                fontFamily: "Lucida Console, Monaco, monospace",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "25px",
+                  margin: "20px",
+                  fontWeight: "bolder",
+                }}
+              >
+                Total Expense : RS. {usersData[currentUser]["totalExpense"]}
+              </div>
+
+              <div
+                style={{
+                  fontSize: "25px",
+                  margin: "20px",
+                  fontWeight: "bolder",
+                }}
+              >
+                You Borrowed : RS. {usersData[currentUser]["youBorrowed"]}
+              </div>
+
+              <div
+                style={{
+                  fontSize: "25px",
+                  margin: "20px",
+                  fontWeight: "bolder",
+                }}
+              >
+                You Lent : Rs. {usersData[currentUser]["youLent"]}
+              </div>
             </div>
           )}
           {currentUser && (
-            <div>
-              Welcome to App Click on ADD for creating GROUP
-              <Link to="/addGroup">ADD</Link>
+            <div
+              style={{
+                fontSize: "25px",
+                margin: "20px",
+                fontWeight: "bolder",
+              }}
+            >
+              <p style={{ fontSize: "30px", marginTop: 10 }}>
+                Welcome to PaymentZ
+              </p>
+              <p style={{ fontSize: "20px", marginTop: 10 }}>
+                <Link to="/addGroup"> Click Here </Link>
+                to Add Group
+              </p>
             </div>
           )}
           {currentUser &&
@@ -34,7 +85,13 @@ class Groups extends React.Component {
             Object.keys(usersData[currentUser]["groups"]).length > 0 && (
               <div
                 style={{
-                  margin: "0 0 0 35%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  border: "1px solid azure",
+                  padding: 30,
+                  width: 400,
                 }}
               >
                 {Object.keys(usersData[currentUser]["groups"]).map((group) =>
@@ -49,7 +106,7 @@ class Groups extends React.Component {
                             id={group}
                             onClick={(e) => selectGroup(e.target.id)}
                           >
-                            +
+                            ADD EXPENSE
                           </button>
                         </Link>
                       </td>

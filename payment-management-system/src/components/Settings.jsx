@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Router } from "react-router-dom";
 import { addGroup, selectGroup, deleteGroup } from "../redux/action";
 import { connect } from "react-redux";
+import { Button } from "@material-ui/core";
 
 class Settings extends React.Component {
   constructor(props) {
@@ -44,31 +45,29 @@ class Settings extends React.Component {
       deleteGroup,
     } = this.props;
     return (
-      <>
+      <div
+        style={{
+          minHeight: 620,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
         <div>
-          {currentUser && (
-            <div>
-              Total Expense : RS. {usersData[currentUser]["totalExpense"]}
-              <br />
-              You Borrowed : RS. {usersData[currentUser]["youBorrowed"]}
-              <br />
-              You Lent : Rs. {usersData[currentUser]["youLent"]}
-            </div>
-          )}
-          {currentUser && (
-            <div>
-              Welcome to App Click on ADD for creating GROUP
-              <Link to="/addGroup">ADD</Link>
-            </div>
-          )}
           {currentUser &&
             Object.keys(usersData).length > 0 &&
             usersData[currentUser]["groups"] &&
             Object.keys(usersData[currentUser]["groups"]).length > 0 && (
               <div
                 style={{
-                  margin: "0 0 0 35%",
-                  // textAlign: "center",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  border: "1px solid azure",
+                  padding: 30,
+                  width: 400,
                 }}
               >
                 {Object.keys(usersData[currentUser]["groups"]).map((group) =>
@@ -78,20 +77,22 @@ class Settings extends React.Component {
                         {usersData[currentUser]["groups"][group]["groupName"]}
                       </td>
                       <td>
-                        <Link to={`/addexpense/${group}`}>
+                        {/* <Link to={`/addexpense/${group}`}>
                           <button
                             id={group}
                             // onClick={(e) => selectGroup(e.target.id)}
                           >
                             edit
                           </button>
-                        </Link>
-                        <button
+                        </Link> */}
+                        <Button
+                          variant="contained"
+                          color="secondary"
                           id={group}
                           onClick={(e) => this.handleDelete(e)}
                         >
-                          del group
-                        </button>
+                          Delete group
+                        </Button>
                       </td>
                     </tr>
                   ) : (
@@ -101,7 +102,7 @@ class Settings extends React.Component {
               </div>
             )}
         </div>
-      </>
+      </div>
     );
   }
 }

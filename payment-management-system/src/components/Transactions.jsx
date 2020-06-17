@@ -21,15 +21,6 @@ class Transactions extends React.Component {
       customCategory: "",
     };
   }
-
-  // handleAdd = (e) => {
-  //   const { email, users } = this.state;
-  //   this.setState({
-  //     users: [...users, email],
-  //     email: "",
-  //   });
-  // };
-
   handleInput = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -54,12 +45,14 @@ class Transactions extends React.Component {
       new Date().getMonth() + 1 < 10
         ? "0" + (new Date().getMonth() + 1)
         : new Date().getMonth() + 1;
+    console.log(payload.groupId, "payloadGroupId");
     selectGroup(payload.groupId);
+
     addExpense({
       ...payload,
       timeStamp: ` ${new Date().getFullYear()}-${month}-${new Date().getDate()}`,
       member: currentUser,
-      type: "Settlement",
+      type: "Paid",
       isSettled: !payload.isSettled,
     });
     updateBorrowed({
@@ -77,7 +70,7 @@ class Transactions extends React.Component {
         ...payload,
         timeStamp: ` ${new Date().getFullYear()}-${month}-${new Date().getDate()}`,
         member: payload.paidById.toString(),
-        type: "Settlement",
+        type: "Rceived",
         isSettled: !payload.isSettled,
       }) &&
       updateLent({
@@ -99,7 +92,7 @@ class Transactions extends React.Component {
     const { categories, usersData, currentUser } = this.props;
     return (
       <>
-        <div>
+        <div style={{ minHeight: 600 }}>
           {currentUser && usersData[currentUser]["expenses"] && (
             <table style={{ borderCollapse: "collapse", width: "100%" }}>
               <tr

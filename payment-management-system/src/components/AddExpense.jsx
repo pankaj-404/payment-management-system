@@ -7,6 +7,7 @@ import {
   updateExpense,
 } from "../redux/action";
 import { connect } from "react-redux";
+import { Button, TextField, Select, MenuItem } from "@material-ui/core";
 
 class AddExpense extends React.Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class AddExpense extends React.Component {
           : addExpense({
               ...payload,
               member: member,
-              type: "Lent",
+              type: "Lend",
               isSettled: false,
             }) &&
             updateLent({ ...payload, member: member, share: amount - share })
@@ -77,39 +78,42 @@ class AddExpense extends React.Component {
     return (
       <div
         style={{
+          minHeight: 600,
           display: "flex",
-          flexDirection: "column",
-          margin: "10% 25%",
-          justifyItems: "space-around",
-          padding: "20px ",
-          border: "1px solid black",
+          // flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          // padding: "165px 0 220px 0",
         }}
       >
-        AddExpense
-        <br />
-        <label>
-          date
-          <input
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            padding: "20px ",
+            border: "1px solid black",
+            background: "white",
+            width: 400,
+          }}
+        >
+          AddExpense
+          <br />
+          <TextField
             onChange={(e) => this.handleChange(e)}
             value={timeStamp}
             type="date"
             name="timeStamp"
-            placeholder="date"
           />
-        </label>
-        <label>
-          amount
-          <input
+          <TextField
+            label="amount"
             onChange={(e) => this.handleChange(e)}
             value={amount}
             type="number"
             name="amount"
             placeholder="amount"
           />
-        </label>
-        <label>
-          Email
-          <select
+          <Select
+            variant="standard"
             onChange={(e) => this.handleChange(e)}
             value={category}
             type="text"
@@ -117,17 +121,20 @@ class AddExpense extends React.Component {
             placeholder="categories"
           >
             {categories.map((category) => (
-              <option value={category}> {category}</option>
+              <MenuItem value={category}> {category}</MenuItem>
             ))}
-          </select>
-        </label>
-        <button
-          onClick={() => {
-            handleClick(this.state);
-          }}
-        >
-          Add Expense
-        </button>
+          </Select>
+          <Button
+            style={{ marginTop: 10 }}
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              handleClick(this.state);
+            }}
+          >
+            Add Expense
+          </Button>
+        </div>
       </div>
     );
   }

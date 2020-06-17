@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Router, Redirect, useHistory } from "react-router-dom";
 import { signup } from "../redux/action";
 import { connect } from "react-redux";
+import { Container, TextField, Button } from "@material-ui/core";
 
 class Signup extends React.Component {
   constructor(props) {
@@ -32,56 +33,68 @@ class Signup extends React.Component {
   render() {
     const { name, email, password } = this.state;
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          margin: "10% 25%",
-          justifyItems: "space-around",
-          padding: "20px ",
-          border: "1px solid black",
-        }}
-      >
-        Signup
-        <br />
-        <label style={{ margin: 10 }}>
-          Name
-          <input
+      <div style={{ padding: "160px 0 180px 0 " }}>
+        <div
+          style={{
+            color: "azure",
+            fontFamily: "Abril Fatface, cursive",
+            fontSize: "30px",
+            marginBottom: 10,
+            letterSpacing: 3,
+          }}
+        >
+          SIGN-UP FORM
+        </div>
+        <Container
+          style={{
+            border: "1px solid white",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "400px",
+            textAlign: "center",
+            padding: 10,
+            background: "white",
+          }}
+        >
+          <TextField
+            required
+            label="Name"
             onChange={(e) => this.handleChnage(e)}
             value={name}
             type="text"
             name="name"
             placeholder="Name"
           />
-        </label>
-        <label style={{ margin: 10 }}>
-          Email
-          <input
+          <TextField
+            required
+            label="Email"
             onChange={(e) => this.handleChnage(e)}
             value={email}
             type="email"
             name="email"
             placeholder="Email address"
           />
-        </label>
-        <label style={{ margin: 10 }}>
-          Password
-          <input
+          <TextField
+            required
+            label="Password"
             onChange={(e) => this.handleChnage(e)}
             value={password}
             type="password"
             name="password"
             placeholder="Password"
           />
-        </label>
-        <button
-          style={{ margin: 10 }}
-          onClick={() => {
-            this.handleClick(this.state);
-          }}
-        >
-          Signup
-        </button>
+          <Button
+            style={{ margin: 10 }}
+            variant="contained"
+            color="secondary"
+            onClick={() => {
+              this.handleClick(this.state);
+            }}
+          >
+            Signup
+          </Button>
+        </Container>
       </div>
     );
   }

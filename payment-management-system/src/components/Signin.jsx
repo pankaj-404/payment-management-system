@@ -2,6 +2,8 @@ import React from "react";
 import { Link, Router, Redirect, useHistory } from "react-router-dom";
 import { signin } from "../redux/action";
 import { connect } from "react-redux";
+import { TextField, Button, Container, Box } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 
 class Signup extends React.Component {
   constructor(props) {
@@ -36,55 +38,80 @@ class Signup extends React.Component {
       });
       signin(payload);
       history.push("/home");
+    } else {
+      return <Alert severity="error">"Invalid Credentials"</Alert>;
     }
   };
 
   render() {
     const { email, password } = this.state;
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          margin: "10% 25%",
-          justifyItems: "space-around",
-          padding: "20px ",
-          border: "1px solid black",
-        }}
-      >
-        Signin
-        <br />
-        <label>
-          Email
-          <input
-            style={{ margin: 10 }}
+      <div style={{ padding: "165px 0 220px 0 " }}>
+        <div
+          style={{
+            color: "azure",
+            fontFamily: "Abril Fatface, cursive",
+            fontSize: "30px",
+            marginBottom: 10,
+            letterSpacing: 3,
+          }}
+        >
+          SIGN-IN FORM
+        </div>
+        <Container
+          style={{
+            border: "1px solid white",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "400px",
+            textAlign: "center",
+            padding: 10,
+            background: "white",
+          }}
+        >
+          <TextField
+            required
+            label="Email"
             onChange={(e) => this.handleChnage(e)}
             value={email}
             type="email"
             name="email"
             placeholder="Email address"
           />
-        </label>
-        <label>
-          Password
-          <input
-            style={{ margin: 10 }}
+          <TextField
+            required
+            label="Password"
             onChange={(e) => this.handleChnage(e)}
             value={password}
             type="password"
             name="password"
-            placeholder="Password"
           />
-        </label>
-        <button
-          style={{ margin: 10 }}
-          onClick={() => this.handleClick(this.state)}
-        >
-          Signin
-        </button>
-        <Link to="/signup">
-          <button style={{ width: "100%", margin: 10 }}>Signup</button>
-        </Link>
+          <Box>
+            <Button
+              style={{ width: 100, margin: "20px 10px 10px 0" }}
+              size="small"
+              variant="contained"
+              fullWidth="false"
+              color="primary"
+              onClick={() => this.handleClick(this.state)}
+            >
+              Login
+            </Button>
+            <Button
+              style={{ width: 100, margin: "20px 10px 10px 0" }}
+              size="small"
+              variant="contained"
+              fullWidth="false"
+              onClick={() => {
+                this.props.history.push("/signup");
+              }}
+              color="secondary"
+            >
+              Signup
+            </Button>
+          </Box>
+        </Container>
       </div>
     );
   }
