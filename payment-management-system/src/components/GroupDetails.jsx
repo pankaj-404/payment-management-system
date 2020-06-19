@@ -34,11 +34,13 @@ class GroupDetails extends React.Component {
   validation = (payload) => {
     const { usersData, addGroup, history } = this.props;
     const { email, users, groupName } = this.state;
-    console.log(users);
-    // usersData.hasOwnProperty(email) &&
+    let groupId = new Date().getTime();
+
     users.length > 1 &&
       groupName &&
-      users.map((member) => addGroup({ ...payload, member: member }));
+      users.map((member) =>
+        addGroup({ ...payload, groupId: groupId, member: member })
+      );
     history.push("/home");
   };
 
@@ -58,11 +60,6 @@ class GroupDetails extends React.Component {
       >
         <div
           style={{
-            // minHeight: 620,
-            // display: "flex",
-            // alignItems: "center",
-            // justifyContent: "center",
-            // flexDirection: "column",
             border: "1px solid white",
             display: "flex",
             flexDirection: "column",

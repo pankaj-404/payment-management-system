@@ -58,10 +58,4 @@ const mapStasteToProps = (state) => ({
   currentUser: state.currentUser,
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   logout: (payload) => dispatch(logout(payload)),
-//   signin: (payload) => dispatch(signin(payload)),
-//   signup: (payload) => dispatch(signup(payload)),
-// });
-
 export default connect(mapStasteToProps, null)(Routes);

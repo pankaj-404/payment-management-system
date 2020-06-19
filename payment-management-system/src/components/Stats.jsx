@@ -19,8 +19,6 @@ class Stats extends React.Component {
     };
   }
 
-  // console.log(months);
-
   handleChange = (e) => {
     const { usersData, currentUser } = this.props;
     let months = {
@@ -84,7 +82,6 @@ class Stats extends React.Component {
     this.setState({
       month: temp,
     });
-    // console.log(months[month], "handle");
     months[temp].map((ele) => {
       if (ele.type !== "Settlement")
         switch (ele["category"]) {
@@ -152,9 +149,6 @@ class Stats extends React.Component {
     return (
       <div
         style={{
-          // display: "flex",
-          // flexWrap: "wrap",
-          // justifyContent: "center",
           minHeight: 620,
           color: "white",
         }}
@@ -164,16 +158,8 @@ class Stats extends React.Component {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
-            // minHeight: 620,
-            // color: "white",
           }}
         >
-          {/* variant="standard"
-            onChange={(e) => this.handleChange(e)}
-            value={category}
-            type="text"
-            name="category"
-            placeholder="categories" */}
           <FormControl>
             <InputLabel>Select Month</InputLabel>
             <Select
@@ -211,7 +197,6 @@ class Stats extends React.Component {
         >
           {month && (
             <Chart
-              // style={{ margin: 10 }}
               width={"500px"}
               height={"300px"}
               chartType="PieChart"

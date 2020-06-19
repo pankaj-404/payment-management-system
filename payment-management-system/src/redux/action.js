@@ -63,7 +63,6 @@ export const updateExpense = (payload) => ({
   type: UPDATE_EXPENSE,
   payload,
 });
-// updateBorrowed,updateLent,updateExpense
 export const updateBorrowed = (payload) => ({
   type: UPDATE_BORROWED,
   payload,

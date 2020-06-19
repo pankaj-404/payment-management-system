@@ -17,7 +17,6 @@ class Groups extends React.Component {
             fontFamily: "Arial Black, Gadget, sans-serif",
             display: "flex",
             alignItems: "center",
-            // justifyContent: "center",
             flexDirection: "column",
             minHeight: 620,
           }}

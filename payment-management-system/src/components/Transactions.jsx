@@ -8,7 +8,6 @@ import {
   updateLent,
   updateExpense,
   addExpense,
-  // selectGroup,
 } from "../redux/action";
 import { connect } from "react-redux";
 
@@ -45,7 +44,6 @@ class Transactions extends React.Component {
       new Date().getMonth() + 1 < 10
         ? "0" + (new Date().getMonth() + 1)
         : new Date().getMonth() + 1;
-    console.log(payload.groupId, "payloadGroupId");
     selectGroup(payload.groupId);
 
     addExpense({
@@ -65,12 +63,11 @@ class Transactions extends React.Component {
       currentUser: currentUser,
       share: Number(payload.userShare),
     }) &&
-      // updateExpense({ ...payload, share: payload.userShare }) &&
       addExpense({
         ...payload,
         timeStamp: ` ${new Date().getFullYear()}-${month}-${new Date().getDate()}`,
         member: payload.paidById.toString(),
-        type: "Rceived",
+        type: "Received",
         isSettled: !payload.isSettled,
       }) &&
       updateLent({
@@ -122,7 +119,6 @@ class Transactions extends React.Component {
                     <td>{expense.groupName}</td>
                     <td>{expense.userShare}</td>
                     <td>{expense.paidBy}</td>
-                    {/* <td>{expense.isSettled ? "Done" : "Pending"}</td> */}
                     <td>{expense.type}</td>
 
                     {!expense.isSettled &&
@@ -153,7 +149,6 @@ const mapStasteToProps = (state) => ({
   categories: state.categories,
   currentUser: state.currentUser,
 });
-// updateBorrowed,updateLent,updateExpense
 const mapDispatchToProps = (dispatch) => ({
   addGroup: (payload) => dispatch(addGroup(payload)),
   selectGroup: (payload) => dispatch(selectGroup(payload)),

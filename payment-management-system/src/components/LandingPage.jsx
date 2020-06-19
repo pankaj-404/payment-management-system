@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
 const btnSpace = {
   margin: "20px 20px 0 0",
@@ -30,5 +29,3 @@ export default function LandingPage() {
     </div>
   );
 }
-
-//  connect(null)(LandingPage);

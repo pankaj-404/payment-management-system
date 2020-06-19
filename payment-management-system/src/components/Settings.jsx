@@ -19,7 +19,7 @@ class Settings extends React.Component {
     });
   };
 
-  handleDelete(e, payload) {
+  handleDelete(id, payload) {
     const {
       currentGroupMembers,
       selectGroup,
@@ -27,11 +27,9 @@ class Settings extends React.Component {
       currentUser,
       usersData,
     } = this.props;
-    const group = usersData[currentUser]["groups"][e.target.id]["members"];
-    selectGroup(e.target.id);
-    group.map((ele) =>
-      deleteGroup({ ...payload, member: ele, groupId: e.target.id })
-    );
+    const group = usersData[currentUser]["groups"][id]["members"];
+    selectGroup(id);
+    group.map((ele) => deleteGroup({ ...payload, member: ele, groupId: id }));
   }
 
   render() {
@@ -76,24 +74,17 @@ class Settings extends React.Component {
                       <td>
                         {usersData[currentUser]["groups"][group]["groupName"]}
                       </td>
-                      <td>
-                        {/* <Link to={`/addexpense/${group}`}>
-                          <button
-                            id={group}
-                            // onClick={(e) => selectGroup(e.target.id)}
-                          >
-                            edit
-                          </button>
-                        </Link> */}
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          id={group}
-                          onClick={(e) => this.handleDelete(e)}
-                        >
-                          Delete group
-                        </Button>
-                      </td>
+
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        id={group}
+                        onClick={() => {
+                          this.handleDelete(group);
+                        }}
+                      >
+                        Delete group
+                      </Button>
                     </tr>
                   ) : (
                     ""

@@ -23,13 +23,9 @@ class AddExpense extends React.Component {
   handleChange = (e) => {
     const { id } = this.props.match.params;
     const time = new Date().toLocaleString();
-    // console.log(e.target.name, e.target.value, "addExpannse");
-
-    // console.log(this.props);
     this.setState({
       [e.target.name]: e.target.value,
       currentGroup: id,
-      // timeStamp: time,
     });
   };
 
@@ -46,7 +42,6 @@ class AddExpense extends React.Component {
       currentUser,
     } = this.props;
     const share = Number(amount) / currentGroupMembers.length;
-    // console.log(share);
     amount &&
       category &&
       timeStamp &&
@@ -80,10 +75,8 @@ class AddExpense extends React.Component {
         style={{
           minHeight: 600,
           display: "flex",
-          // flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          // padding: "165px 0 220px 0",
         }}
       >
         <div
@@ -145,7 +138,6 @@ const mapStasteToProps = (state) => ({
   categories: state.categories,
   currentGroupMembers: state.currentGroupMembers,
   currentUser: state.currentUser,
-  // updateExpense: state.updateExpense,
 });
 
 const mapDispatchToProps = (dispatch) => ({

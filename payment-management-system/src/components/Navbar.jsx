@@ -1,4 +1,3 @@
-// Transactions,stats,settings,logout
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -15,7 +14,6 @@ function Navbar(props) {
         textDecoration: "none",
       }}
     >
-      {/* <Link to="/">Home</Link> */}
       <Link
         style={{
           padding: "10px 10px 10px   0",

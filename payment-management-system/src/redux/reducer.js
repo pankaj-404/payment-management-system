@@ -14,10 +14,8 @@ import {
   UPDATE_LENT,
   SETTLE_PENDING,
 } from "./actionTypes";
-
+import { setData, getData, removeData } from "./localStorage";
 const reducer = (state, { type, payload }) => {
-  // console.log(state, "state");
-  // console.log(payload, "payload");
   let {
     users,
     currentUser,
@@ -25,15 +23,25 @@ const reducer = (state, { type, payload }) => {
     currentGroup,
     currentGroupMembers,
   } = state;
+
   let { expenses } = state.users;
+  let storageUsers = getData("users");
+  let dataObj;
+
   switch (type) {
     case SIGN_IN:
+      setData("isSignin", payload.isSignin);
+      setData("currentUser", payload.email);
       return {
         ...state,
         isSignin: payload.isSignin,
         currentUser: payload.email,
       };
     case LOGOUT:
+      setData("isSignin", false);
+      setData("currentUser", "");
+      setData("currentGroup", "");
+      setData("currentGroupMembers", []);
       return {
         ...state,
         isSignin: false,
@@ -49,15 +57,36 @@ const reducer = (state, { type, payload }) => {
         groups: {},
         expenses: [],
       };
-      let email = payload.email;
+
+      dataObj = {
+        ...storageUsers,
+        [payload.email]: setuserData,
+      };
+
+      setData("users", dataObj);
       return {
         ...state,
         users: { ...users, [payload.email]: setuserData },
       };
 
     case ADD_GROUP:
-      let groupId = new Date().getTime();
       const members = payload.users;
+
+      dataObj = {
+        ...storageUsers,
+        [payload.member]: {
+          ...storageUsers[payload["member"]],
+          groups: {
+            ...storageUsers[payload["member"]]["groups"],
+            [payload.groupId]: {
+              groupName: payload.groupName,
+              members: payload.users,
+              customCategories: [],
+            },
+          },
+        },
+      };
+      setData("users", dataObj);
       return {
         ...state,
         users: {
@@ -66,7 +95,7 @@ const reducer = (state, { type, payload }) => {
             ...users[payload["member"]],
             groups: {
               ...users[payload["member"]]["groups"],
-              [groupId]: {
+              [payload.groupId]: {
                 groupName: payload.groupName,
                 members: payload.users,
                 customCategories: [],
@@ -81,6 +110,30 @@ const reducer = (state, { type, payload }) => {
       const currentGroupName =
         users[currentUser]["groups"][currentGroup]["groupName"];
       const userShare = Number(payload["amount"]) / currentGroupMembers.length;
+      setData("currentGroup", currentGroupName);
+      dataObj = {
+        ...storageUsers,
+        [payload.member]: {
+          ...storageUsers[payload.member],
+          expenses: [
+            ...storageUsers[payload.member]["expenses"],
+            {
+              timeStamp: payload["timeStamp"],
+              groupId: payload["currentGroup"],
+              amount: payload["amount"],
+              category: payload["category"],
+              groupName: currentGroupName,
+              userShare: userShare,
+              isSettled: payload["isSettled"],
+              paidBy: paidBy,
+              paidById: paidById,
+              type: payload.type,
+            },
+          ],
+        },
+      };
+      setData("users", dataObj);
+
       return {
         ...state,
         users: {
@@ -110,13 +163,8 @@ const reducer = (state, { type, payload }) => {
         ...state,
       };
     case DELETE_GROUP:
-      // console.log(currentGroupMembers, "delete");
-      // const abc = Object.keys(users[payload["member"]]["groups"]).flter(
-      //   (ele) => ele != payload.groupId
-      // );
-      // console.log(abc, "arr");
       delete users[payload["member"]]["groups"][payload["groupId"]];
-
+      setData("users", users);
       return {
         ...state,
       };
@@ -130,6 +178,8 @@ const reducer = (state, { type, payload }) => {
       };
     case SELECT_GROUP:
       const arr = users[currentUser]["groups"][payload]["members"];
+      setData("currentGroup", payload);
+      setData("currentGroupMembers", arr);
       return {
         ...state,
         currentGroup: payload,
@@ -139,6 +189,14 @@ const reducer = (state, { type, payload }) => {
       let total =
         Number(users[payload.currentUser]["totalExpense"]) +
         Number(payload.share);
+      dataObj = {
+        ...storageUsers,
+        [payload.currentUser]: {
+          ...storageUsers[payload.currentUser],
+          totalExpense: total,
+        },
+      };
+      setData("users", dataObj);
       return {
         ...state,
         users: {
@@ -150,6 +208,17 @@ const reducer = (state, { type, payload }) => {
         },
       };
     case UPDATE_BORROWED:
+      dataObj = {
+        ...storageUsers,
+        [payload.member]: {
+          ...storageUsers[payload.member],
+          youBorrowed:
+            Number(users[payload.member]["youBorrowed"]) +
+            Number(payload.share),
+        },
+      };
+      setData("users", dataObj);
+
       return {
         ...state,
         users: {
@@ -163,6 +232,14 @@ const reducer = (state, { type, payload }) => {
         },
       };
     case UPDATE_LENT:
+      dataObj = {
+        ...storageUsers,
+        [payload.member]: {
+          ...storageUsers[payload.member],
+          youLent: users[payload.member]["youLent"] + payload.share,
+        },
+      };
+      setData("users", dataObj);
       return {
         ...state,
         users: {
@@ -179,6 +256,14 @@ const reducer = (state, { type, payload }) => {
       ].map((expense, i) =>
         i != payload.index ? expense : { ...expense, isSettled: true }
       );
+      dataObj = {
+        ...storageUsers,
+        [payload.member]: {
+          ...storageUsers[payload.member],
+          expenses: updatedExpense,
+        },
+      };
+      setData("users", dataObj);
       return {
         ...state,
         users: {
