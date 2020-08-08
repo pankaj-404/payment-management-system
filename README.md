@@ -8,9 +8,9 @@ The web-app PaymentZ, provides a Payment Management System inspired by Splitwise
 The deployed project can be found [here](https://vercel.com/pankaj-404/payment-management-system)
 <br>
 <br>
-<img src ="./screenshots/PMS React App landing page.png"  width="330" height="200" />
-<img src ="./screenshots/PMS React App transactions.png" width="330" height="200" />
-<img src ="./screenshots/PMS React App google-chart.png" width="330" height="200" />
+<img src ="./screenshots/PMS React App landing page.png"  width="400" height="300" />
+<img src ="./screenshots/PMS React App transactions.png" width="400" height="300" />
+<img src ="./screenshots/PMS React App google-chart.png" align="center" width="400" height="300" />
 <br>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -28,12 +28,12 @@ The app will automatically reload if you change any of the source files.
 
 ## Deploying a React app with Now.sh
 
- - Install now globlaly `npm i -g now`
+ - Install now globlaly `npm i -g vercel`
  - Move inside your react app folder (make sure you are on the entry folder package.json etc is located.
- - Run the command `now` from terminal
- - If not logged in, or if no account created you might be asked to. once login and auth is setup, the terminal will ask you a few questions to setup and deploy.
+ - Run the command `vercel` from terminal
+ - If not logged in, or if no account created you might be asked to. once `vercel login` and auth is setup, the terminal will ask you a few questions to setup and deploy.
  - Once over, it will show its ready and gives you a production link
- - If you want to deploy it to a production build, then do `now --prod`
+ - If you want to deploy it to a production build, then do `vercel --prod`
 
 
 ## Built With
