@@ -6,7 +6,6 @@ import Transactions from "./Transactions";
 import Settings from "./Settings";
 import Stats from "./Stats";
 import Navbar from "./Navbar";
-import Body from "./Body";
 import GroupDetails from "./GroupDetails";
 import AddExpense from "./AddExpense";
 import Groups from "./Groups";
@@ -20,7 +19,6 @@ function Routes(props) {
       <Switch>
         <Route exact path="/" render={() => <LangingPage />} />
         <Route path="/signin" render={(props) => <Signin {...props} />} />
-        {/* <Route path="/home" render={(props) => <Body {...props} />} /> */}
         <Route path="/signup" render={(props) => <Signup {...props} />} />
         {currentUser !== "" ? (
           <>
